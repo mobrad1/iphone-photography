@@ -11,7 +11,15 @@ class AchievementsServiceProvider extends ServiceProvider
 {
     protected $achievements = [
         LessonsWatched\FirstLessonWatched::class,
-        CommentsWritten\FirstCommentWritten::class
+        LessonsWatched\FiveLessonsWatched::class,
+        LessonsWatched\TenLessonsWatched::class,
+        LessonsWatched\TwentyFiveLessonsWatched::class,
+        LessonsWatched\FiftyLessonsWatched::class,
+        CommentsWritten\FirstCommentWritten::class,
+        CommentsWritten\ThreeCommentsWritten::class,
+        CommentsWritten\FiveCommentsWritten::Class,
+        CommentsWritten\TenCommentsWritten::class,
+        CommentsWritten\TwentyCommentsWritten::class
     ];
     public function register()
     {

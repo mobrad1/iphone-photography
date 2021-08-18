@@ -8,7 +8,6 @@ use App\Achievements\AchievementType;
 
 class FirstLessonWatched extends AchievementType
 {
-    public $name = "First Lesson Watched";
     public $description = "You've watched your first lesson. Great job!";
 
     public function qualifier($user)

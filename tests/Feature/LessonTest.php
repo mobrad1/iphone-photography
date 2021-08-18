@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class LessonTest extends TestCase
 {
-
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *

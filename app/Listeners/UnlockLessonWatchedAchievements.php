@@ -29,8 +29,9 @@ class UnlockLessonWatchedAchievements
         //
         $achievementIdsToUnlockForUsers = app('achievements')->filter(function($achievement) use ($event){
         //If user has qualified for the achievement dispatch the event achievementUnlocked
-        if($achievement->qualifier($event->user)){
-           \App\Events\AchievementUnlocked::dispatch($achievement->name,$event->user);
+
+        if($achievement->qualifier($event->user->fresh())){
+           \App\Events\AchievementUnlocked::dispatch($achievement->name(),$event->user->fresh());
         }
             return $achievement->qualifier($event->user);
         })->map(function ($achievement){

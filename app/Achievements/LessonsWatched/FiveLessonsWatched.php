@@ -8,12 +8,13 @@ use App\Achievements\AchievementType;
 
 class FiveLessonsWatched extends AchievementType
 {
-    public $name = "First Lesson Watched";
-    public $description = "You've watched your first lesson. Great job!";
+
+    public $description = "You've watched five lessons. Great job!";
 
     public function qualifier($user)
     {
-        return $user->watched->count() == 1;
+
+        return $user->watched->count() == 5;
     }
 
 }

@@ -29,7 +29,7 @@ class UnlockCommentWrittenAchievements
         $achievementIdsToUnlockForUsers = app('achievements')->filter(function($achievement) use ($event){
             //If user is qualified for the achievement dispatch the event achievementUnlocked
             if($achievement->qualifier($event->comment->user)){
-                   \App\Events\AchievementUnlocked::dispatch($achievement->name,$event->comment->user);
+                   \App\Events\AchievementUnlocked::dispatch($achievement->name(),$event->comment->user);
             }
             return $achievement->qualifier($event->comment->user);
         })->map(function ($achievement){
