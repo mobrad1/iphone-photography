@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use App\Achievements\AchievementType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class AchievementTypeTest extends TestCase
 {
@@ -14,10 +14,17 @@ class AchievementTypeTest extends TestCase
     {
         $type = new FakeAchievementType();
 
-        $this->assertEquals('First Lesson Watched',$type->name);
+
+        $this->assertEquals('Fake Achievement Type',$type->name());
     }
 }
 
-class FakeAchievementType extends AchievementType{
+class FakeAchievementType extends AchievementType
+{
+    public $description = "First Lesson Watched";
 
+    public function qualifier($user)
+    {
+        return true;
+    }
 }

@@ -13,7 +13,7 @@ abstract class AchievementType
     public function __construct()
     {
         $this->model = Achievement::firstOrCreate([
-            'name' => $this->name,
+            'name' => $this->name(),
             'description' => $this->description
         ]);
     }
@@ -23,4 +23,12 @@ abstract class AchievementType
         return $this->model->getKey();
     }
 
+    public function name()
+    {
+        if (property_exists($this,'name')){
+            return $this->name;
+        }
+        return trim(preg_replace('/[A-Z]/',' $0',class_basename($this)));
+    }
+    abstract public function qualifier($user);
 }
