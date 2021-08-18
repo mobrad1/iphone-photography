@@ -2,16 +2,16 @@
 
 namespace App\Providers;
 
-use App\Achievements\CommentsWritten\FirstCommentWritten;
-use App\Achievements\LessonsWatched\FirstLessonWatched;
+use App\Achievements\CommentsWritten;
+use App\Achievements\LessonsWatched;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class AchievementsServiceProvider extends ServiceProvider
 {
     protected $achievements = [
-        FirstLessonWatched::class,
-        FirstCommentWritten::class
+        LessonsWatched\FirstLessonWatched::class,
+        CommentsWritten\FirstCommentWritten::class
     ];
     public function register()
     {
