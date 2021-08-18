@@ -11,7 +11,7 @@ use App\Models\Comment;
 use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
@@ -60,7 +60,7 @@ class AchievementTest extends TestCase
         $this->assertCount(25,$user->fresh()->watched);
 
         Event::assertDispatched(AchievementUnlocked::class,function ($event) use ($user){
-            return $user->is($event->user) && $event->achievement_name = "Twenty Five Lessons Watched";
+            return $user->is($event->user) && $event->achievement_name == "Twenty Five Lessons Watched";
         });
     }
     public function test_an_achievement_is_unlocked_once_a_user_watches_five_lessons_and_announcement_is_made()
@@ -79,7 +79,7 @@ class AchievementTest extends TestCase
         $this->assertCount(5,$user->fresh()->watched);
 
         Event::assertDispatched(AchievementUnlocked::class,function ($event) use ($user){
-            return $user->is($event->user) && $event->achievement_name = "Five Lessons Watched";
+            return $user->is($event->user) && $event->achievement_name == "Five Lessons Watched";
         });
     }
     public function test_an_achievement_is_unlocked_once_a_user_watches_ten_lessons_and_announcement_is_made()
@@ -98,7 +98,7 @@ class AchievementTest extends TestCase
         $this->assertCount(10,$user->fresh()->watched);
 
         Event::assertDispatched(AchievementUnlocked::class,function ($event) use ($user){
-            return $user->is($event->user) && $event->achievement_name = "Ten Lessons Watched";
+            return $user->is($event->user) && $event->achievement_name == "Ten Lessons Watched";
         });
     }
     public function test_an_achievement_is_unlocked_once_a_user_watches_fifty_lessons_and_announcement_is_made()
@@ -117,7 +117,7 @@ class AchievementTest extends TestCase
         $this->assertCount(50,$user->fresh()->watched);
 
         Event::assertDispatched(AchievementUnlocked::class,function ($event) use ($user){
-            return $user->is($event->user) && $event->achievement_name = "Five Lessons Watched";
+            return $user->is($event->user) && $event->achievement_name == "Fifty Lessons Watched";
         });
     }
     public function test_an_achievement_is_unlocked_once_a_user_writes_first_comment_and_announcement_is_made()

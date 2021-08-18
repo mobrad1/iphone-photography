@@ -1,0 +1,17 @@
+<?php
+
+
+namespace App\Badge;
+
+
+class {{CLASS}} extends BadgeType
+{
+    public $achievement_points = {{POINTS}};
+
+
+    public function qualifier($user)
+    {
+
+        return $user->achievements->count() == $this->achievement_points;
+    }
+}

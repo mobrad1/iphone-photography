@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\AchievementUnlocked;
+use App\Events\BadgeUnlocked;
 use App\Events\LessonWatched;
 use App\Events\CommentWritten;
 use Illuminate\Support\Facades\Event;
@@ -21,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
         LessonWatched::class => [
             //
         ],
+
     ];
 
     /**

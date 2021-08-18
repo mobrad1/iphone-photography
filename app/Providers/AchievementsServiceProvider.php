@@ -38,6 +38,7 @@ class AchievementsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         Event::listen(\App\Events\LessonWatched::class,\App\Listeners\UnlockLessonWatchedAchievements::class);
         Event::listen(\App\Events\CommentWritten::class,\App\Listeners\UnlockCommentWrittenAchievements::class);
     }

@@ -15,7 +15,7 @@ class CommentWritten
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Comment $comment
      */
     public function __construct(Comment $comment)
     {

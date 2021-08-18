@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'badge_id',
         'password',
     ];
 
@@ -72,5 +73,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Achievement::class,'user_achievements')->withTimestamps();
     }
+
+    /**
+     * The badge that a user belongs to
+     */
+    public function badge()
+    {
+        return $this->belongsTo(Badge::class);
+    }
+    /**
+     * Get next available achievements
+     */
 
 }

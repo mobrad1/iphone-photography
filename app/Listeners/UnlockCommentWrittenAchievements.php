@@ -26,6 +26,7 @@ class UnlockCommentWrittenAchievements
      */
     public function handle(CommentWritten $event)
     {
+
         $achievementIdsToUnlockForUsers = app('achievements')->filter(function($achievement) use ($event){
             //If user is qualified for the achievement dispatch the event achievementUnlocked
             if($achievement->qualifier($event->comment->user)){
