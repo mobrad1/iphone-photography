@@ -34,8 +34,9 @@
    by default the achievment name uses the Class name you can overide that by adding a name property to 
    the class. Make sure to update the generate class which will be located in app/Achievements with the approriate information
 - To create a badge run `php artisan make:badge name` e.g `php artisan make:badge Advanced`. This will create
-    a badge located in app/Badge. Make sure to update the generated class accordingly
-    
+    a badge located in app/Badge. Make sure to update the generated class accordingly.
+- Make sure any new Badge Created should be updated and added in the BadgeService provider in the Laravel Provider directory.
+- Make sure any new Achievement Created should be added in the AchievementServiceProvider in the Laravel Provider Directory.
 # Note
 
 - When either an achievement or a Badge its Created a class is generated which is tied to A model 
