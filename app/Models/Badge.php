@@ -11,6 +11,11 @@ class Badge extends Model
 
     protected $guarded = [];
 
+    /**
+     * Unlock badge for user
+     * @param User $user
+     * @return bool
+     */
     public function unlock(User $user)
     {
         return $user->update(["badge_id" => $this->id]);

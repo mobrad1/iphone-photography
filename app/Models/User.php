@@ -92,9 +92,11 @@ class User extends Authenticatable
 
         return Achievement::whereIn("id",array_values(array_diff($allAchievements,$myAchievements)))->pluck('name');
     }
+
      /**
      * Get next badge
      */
+
     public function getNextBadgeAttribute()
     {
         if(Badge::all()->count() > 0){
@@ -107,9 +109,11 @@ class User extends Authenticatable
         }
         return "No Next badge";
     }
+
      /**
      * Get remain badges to unlock
      */
+
     public function getRemainingToUnlockNextBadgeAttribute()
     {
         // First get all badges and sort them by achievement points
@@ -121,6 +125,7 @@ class User extends Authenticatable
         }
         return $nextBadges->first()->achievement_points - $this->badge->achievement_points;
     }
+
     /**
      * Get Current Badge
      */
