@@ -21,7 +21,7 @@
 
 ## Testing
 
-- Run 'php artisan test'
+- Run `php artisan test`
 
 ## Available Endpoint
 
