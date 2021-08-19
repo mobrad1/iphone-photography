@@ -84,5 +84,48 @@ class User extends Authenticatable
     /**
      * Get next available achievements
      */
+    public function getNextAvailableAchievementsAttribute()
+    {
+        $myAchievements = $this->achievements()->pluck("id")->toArray();
 
+        $allAchievements = Achievement::all()->pluck("id")->toArray();
+
+        return Achievement::whereIn("id",array_values(array_diff($allAchievements,$myAchievements)))->pluck('name');
+    }
+     /**
+     * Get next badge
+     */
+    public function getNextBadgeAttribute()
+    {
+        if(Badge::all()->count() > 0){
+           $nextBadges = Badge::all()->sortBy("achievement_points")->filter(function ($value) {
+            return $value->achievement_points > $this->badge->achievement_points ;
+           });
+           if($nextBadges->count() > 0){
+                return $nextBadges->first()->title;
+            }
+        }
+        return "No Next badge";
+    }
+     /**
+     * Get remain badges to unlock
+     */
+    public function getRemainingToUnlockNextBadgeAttribute()
+    {
+        // First get all badges and sort them by achievement points
+        $nextBadges = Badge::all()->sortBy("achievement_points")->filter(function ($value) {
+            return $value->achievement_points > $this->badge->achievement_points ;
+        });
+        if($nextBadges->count() == 0){
+            return 0;
+        }
+        return $nextBadges->first()->achievement_points - $this->badge->achievement_points;
+    }
+    /**
+     * Get Current Badge
+     */
+    public function getCurrentBadgeAttribute()
+    {
+        return $this->badge->title;
+    }
 }
