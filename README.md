@@ -25,7 +25,7 @@
 
 ## Available Endpoint
 
-- {{url}}/users/23/achievements
+- {{url}}/users/{user}/achievements
 
 ## Commands
 
