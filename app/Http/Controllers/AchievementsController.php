@@ -11,11 +11,13 @@ class AchievementsController extends Controller
 {
     public function index(User $user)
     {
-        $achievements = Achievement::all();
+//        uncomment this line if database is seeded and you need to fire the Achievement Unlocked event to unlock badges
+
+//        $achievements = Achievement::all();
         // I need to call the achievements for the user so my Listener for badges can be called
-        foreach ($achievements as $achievement){
-            AchievementUnlocked::dispatch($achievement->name,$user);
-        }
+//        foreach ($achievements as $achievement){
+//            AchievementUnlocked::dispatch($achievement->name,$user);
+//        }
 
         return response()->json([
             'unlocked_achievements' => $user->achievements->pluck("name"),
