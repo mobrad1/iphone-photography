@@ -28,7 +28,7 @@ class UnlockBadge
     public function handle(AchievementUnlocked $event)
     {
         $badgeToUnlock = app('badges')->filter(function($badge) use ($event){
-            //If user is qualified for the achievement dispatch the event achievementUnlocked
+            //If user is qualified for the badge dispatch the event badge unlocked
             if($badge->qualifier($event->user)){
 
                 \App\Events\BadgeUnlocked::dispatch($badge->title(),$event->user->fresh());
