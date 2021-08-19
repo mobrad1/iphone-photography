@@ -36,10 +36,10 @@
 - To create a badge run `php artisan make:badge name points` e.g `php artisan make:badge Advanced 50`. This will create
     a badge located in app/Badge. Make sure to update the generated class accordingly.
 - Make sure any new Badge Created should be updated and added in the BadgeService provider in the Laravel Provider directory.
-- Make sure any new Achievement Created should be added in the AchievementServiceProvider in the Laravel Provider Directory.
+- Make sure any new Achievement Created should be added in the AchievementServiceProvider in the Laravel Provider directory.
 # Note
 
-- When either an achievement or a Badge its Created a class is generated which is tied to a model 
+- When either an achievement or a Badge is created a class is generated which is tied to the achievement model
 - The badges and achievements are cached after they are created so in case a new one is created you need to run
   `php aritsan cache:clear` on production
 - If the AchievementUnlocked event is not triggered the Badges won't be unlocked and users won't have updated badge ids
