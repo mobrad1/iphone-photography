@@ -8,15 +8,6 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class UnlockCommentWrittenAchievements
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Handle the event.

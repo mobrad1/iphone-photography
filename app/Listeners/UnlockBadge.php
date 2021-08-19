@@ -10,19 +10,9 @@ use Illuminate\Queue\InteractsWithQueue;
 class UnlockBadge
 {
     /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param AchievementUnlocked $event
      * @return void
      */
     public function handle(AchievementUnlocked $event)
@@ -30,7 +20,6 @@ class UnlockBadge
         $badgeToUnlock = app('badges')->filter(function($badge) use ($event){
             //If user is qualified for the badge dispatch the event badge unlocked
             if($badge->qualifier($event->user)){
-
                 \App\Events\BadgeUnlocked::dispatch($badge->title(),$event->user->fresh());
             }
             return $badge->qualifier($event->user);
