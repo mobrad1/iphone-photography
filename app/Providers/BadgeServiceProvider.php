@@ -18,8 +18,10 @@ class BadgeServiceProvider extends ServiceProvider
     {
 
         $this->app->singleton('badges',function(){
-            return collect($this->badges)->map(function ($badges){
-               return new $badges;
+            return cache()->rememberForever("badges",function(){
+                return collect($this->badges)->map(function ($badges){
+                    return new $badges;
+                });
             });
         });
     }
@@ -31,7 +33,6 @@ class BadgeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         Event::listen(\App\Events\AchievementUnlocked::class,\App\Listeners\UnlockBadge::class);
     }
 }

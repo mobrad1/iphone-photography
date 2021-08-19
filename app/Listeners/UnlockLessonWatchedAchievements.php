@@ -33,7 +33,7 @@ class UnlockLessonWatchedAchievements
         if($achievement->qualifier($event->user->fresh())){
            \App\Events\AchievementUnlocked::dispatch($achievement->name(),$event->user->fresh());
         }
-            return $achievement->qualifier($event->user);
+        return $achievement->qualifier($event->user);
         })->map(function ($achievement){
             return $achievement->modelKey();
         });

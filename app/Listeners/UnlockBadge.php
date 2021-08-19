@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\AchievementUnlocked;
+use App\Models\Badge;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -27,12 +28,16 @@ class UnlockBadge
     public function handle(AchievementUnlocked $event)
     {
 
-        app('badges')->filter(function($badge) use ($event){
-            //If user is qualified for the achievement dispatch the event achievementUnlocked
+        $badgeToUnlock = app('badges')->filter(function($badge) use ($event){
+            //If user is qualified for the achievement dispatch the event achievementUnlocke
             if($badge->qualifier($event->user)){
+
                 \App\Events\BadgeUnlocked::dispatch($badge->title(),$event->user->fresh());
             }
-        });
-
+            return $badge->qualifier($event->user);
+        })->map(function ($badge){
+            return $badge->modelKey();
+        });;
+        Badge::find($badgeToUnlock->first())->unlock($event->user);
     }
 }

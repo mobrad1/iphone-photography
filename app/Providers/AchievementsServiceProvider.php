@@ -25,9 +25,11 @@ class AchievementsServiceProvider extends ServiceProvider
     {
         //
          $this->app->singleton('achievements',function(){
-            return collect($this->achievements)->map(function ($achievement){
-               return new $achievement;
-            });
+             return cache()->rememberForever("achievements",function (){
+                 return collect($this->achievements)->map(function ($achievement){
+                    return new $achievement;
+                 });
+             });
         });
     }
 

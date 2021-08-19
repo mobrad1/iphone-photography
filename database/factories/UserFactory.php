@@ -23,10 +23,11 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'badge_id' => Badge::factory()->create()->id,
+            'badge_id' => $this->getBadge(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
@@ -45,5 +46,14 @@ class UserFactory extends Factory
                 'email_verified_at' => null,
             ];
         });
+    }
+    public function getBadge()
+    {
+        $badges = Badge::all();
+
+        if($badges->count() > 0){
+           return Badge::all()->first();
+        }
+        return Badge::factory()->create();
     }
 }

@@ -13,7 +13,7 @@ class Badge extends Model
 
     public function unlock(User $user)
     {
-        $user->update(["badge_id" => $this->id]);
+        return $user->update(["badge_id" => $this->id]);
     }
 
 }
